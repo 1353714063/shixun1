@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0029)https://www.wjx.cn/login.aspx -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head id="Head1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>
+	登录页面_问卷星
+</title><link rel="stylesheet" href="./login/index.css" type="text/css">
+     <script type="text/javascript" src="./login/jquery-1.8.3.min.js.下载"></script>
+    <style>
+        .divAnti input {
+            width: 140px !important;
+            padding-left: 16px !important;
+            border: none;
+            height: 46px !important;
+            line-height:46px !important;
+            font-size: 14px;
+            padding-left: 46px;
+            border-radius: 100px;
+            border: 1px solid #e6e6e6;
+            float: left !important;
+        }
+    </style>
+    <script src="./login/zhezhao.js.下载" type="text/javascript"></script>
+</head>
+<body id="body1" class="fp-viewing">
+    <form name="form" method="post" action="login" id="form">
+<div>
+	<input type="hidden" name="comefrom" value="index">
+</div>
+        <div class="fullpage-wrapper">
+            <div class="full-head clearfix">
+            
+            <div class="member pull-right">
+                <a href="login" class="btn btn-default btn-lg pull-left login hidden" rel="nofollow">登入</a>
+                <a href="register" class="btn btn-default btn-lg pull-left register " rel="nofollow">注册</a>
+                <a href="index" class="btn btn-default btn-lg pull-left back-wjx">返回首页</a>
+            </div>
+        </div>
+            <div class="fullpage-main"></div>
+            <div id="divSojump" class="validate-box">
+                <fieldset class="validate-wrapper">
+                    <h1 id="hlogintxt" class="validate-caption">用户登录</h1>
+                    <ul>
+                        <li>
+                            <label for="user-name" class="icon user-icon"></label>
+                            <input name="username" id="UserName" placeholder="用户名/Email/手机" class="validate-input user-name" type="text" onfocus="if(value==&#39;用户名/Email/手机&#39;){value=&#39;&#39;;}" onblur="if(value==&#39;&#39;){value=&#39;用户名/Email/手机&#39;}"><input type="hidden" name="hfUserName" id="hfUserName">
+                            <div class="divclear"></div>
+                        </li>
+                        <li>
+                            <label for="password" class="icon password-icon"></label>
+                            <input name="password" type="password" id="Password" placeholder="请输入登录密码" class="validate-input">
+                        </li>
+                        
+                        <li>
+							<label style="text-align: center;color: red;" th:text="${msg}">密码错误</label>
+						</li>
+
+                    </ul>
+                    <div id="trRemember" class="remember-box">
+                        <span class="automatic-box pull-left">
+                            <span class="login_checkbox centertxt"><input id="RememberMe" type="checkbox" name="RememberMe"></span>下次自动登录 
+                        </span>
+                        <a id="PasswordRecoveryLink" class="get-back pull-right" href="forgetpassword">忘记用户名/密码？</a>
+                    </div>
+                </fieldset>
+                <fieldset class="submit-wrapper" style="text-align: center; margin-top: 20px;">
+                    <input type="submit" name="LoginButton" value="登 录" id="LoginButton" class="submitbutton" onmouseover="this.className=&#39;submitbutton submitbutton_hover&#39;;" onmouseout="this.className=&#39;submitbutton&#39;;" style="color:White;">
+                    <span style="color: red; line-height: 28px;">
+                        </span>
+                    <a href="register" id="hrefRegister" title="只需２０秒，就可完成注册" class="register-now">立即注册</a>
+                    
+                    <script type="text/javascript">
+                        var UserName = document.getElementById("UserName");
+                        var hfUserName = document.getElementById("hfUserName");
+                        var Password = document.getElementById("Password");
+                        var LoginButton = document.getElementById("LoginButton");
+                        var txtCode = document.getElementById("txtCode");
+                        var hrefGetCode = document.getElementById("hrefGetCode");
+                        function getCode() {
+                            if (!UserName.value) {
+                                alert("请先输入用户名"); UserName.focus(); return;
+                            }
+                            txtCode.focus();
+                            PDF_launch("/register/getcode.aspx?username=" + encodeURIComponent(hfUserName.value), 500, 150, codeCallBack);
+                        }
+                        function codeCallBack() {
+                            txtCode.focus();
+                        }
+                        String.prototype.dbc2sbc = function () {
+                            return this.replace(/[\uff01-\uff5e]/g, function (a) { return String.fromCharCode(a.charCodeAt(0) - 65248); }).replace(/\u3000/g, " ");
+                        }
+                        UserName.onkeypress = Password.onkeypress = function (e) {
+                            e = e || window.event;
+                            if (e && e.keyCode == 13) {
+                                LoginButton.click();
+                            }
+                        }
+                        UserName.onblur = UserName.onchange = function () {
+                            var str = this.value;
+                            var newstr = str.dbc2sbc();
+                            if (str != newstr) this.value = newstr;
+                            UserName.value = newstr;
+                        }
+                        if (txtCode) txtCode.onkeydown = UserName.onkeydown;
+                        if (UserName.value) Password.focus();
+                        else UserName.onblur();
+                    </script>
+                </fieldset>
+            </div>
+            
+          
+        </div>
+    </form>
+
+
+</body></html>
